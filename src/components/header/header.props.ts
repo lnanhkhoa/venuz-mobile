@@ -20,24 +20,15 @@ export interface HeaderProps {
   /**
    * Icon that should appear on the right
    */
-  rightIcon?: IconTypes;
+  RightIcon?: () => React.ReactNode;
 
-  /**
-   * What happens when you press the right icon
-   */
   onRightPress?(): void;
 
-  /**
-   * Container style overrides.
-   */
   style?: StyleProp<ViewStyle>;
-
-  /**
-   * Title style overrides.
-   */
   titleStyle?: StyleProp<TextStyle>;
-  iconLeftSize?: number;
+
   leftIconStyle?: StyleProp<ViewStyle>;
-  iconRightSize?: number;
+  iconLeftSize?: number;
   rightIconStyle?: StyleProp<ViewStyle>;
+  unsafe?: boolean
 }

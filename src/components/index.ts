@@ -14,3 +14,4 @@ export * from './image/images';
 export * from './icon/icon';
 export * from './icon/icons';
 export * from './toast/toast';
+export { default as withBadge } from 'react-native-elements/dist/badge/withBadge';

@@ -9,9 +9,9 @@ import { TextProps } from './text.props';
  * This component is a HOC over the built-in React Native one.
  */
 export function Text(props: TextProps) {
-  const { preset, text, children, color, style: styleOverride, ...rest } = props;
+  const { preset = 'default', text, children, color, style: styleOverride, ...rest } = props;
   const content = text || children;
-  const style = presets[preset || 'default'];
+  const style = presets[preset];
   const styles = [style, color ? { color } : null, styleOverride];
 
   return (
@@ -20,3 +20,5 @@ export function Text(props: TextProps) {
     </ReactNativeText>
   );
 }
+
+export const textPresets = presets;

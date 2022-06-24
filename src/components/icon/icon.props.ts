@@ -1,4 +1,5 @@
 import { ImageStyle, StyleProp, ViewStyle } from 'react-native';
+import { IconTypes } from './icons';
 
 export interface IconProps {
   /**
@@ -15,7 +16,7 @@ export interface IconProps {
   /**
    * The name of the icon
    */
-  icon: string;
+  icon: IconTypes;
 
   /**
    * Size of the icon
@@ -28,4 +29,6 @@ export interface IconProps {
   color?: string;
   disable?: boolean;
   onPress?: () => void;
+
+  badge?: number;
 }

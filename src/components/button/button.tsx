@@ -2,14 +2,14 @@ import * as React from 'react';
 import { TouchableOpacity, ViewStyle, ActivityIndicator, View } from 'react-native';
 //
 import { Icon, Text } from 'components';
-import { viewPresets, textPresets } from './button.presets';
+import { viewPresets, btnTextPresets } from './button.presets';
 import { ButtonProps } from './button.props';
 //
 import { color, spacing } from 'theme';
 
 const LEFT: ViewStyle = { width: 32 };
-const leftIconStyle: ViewStyle = { marginRight: spacing.base, marginLeft: spacing.double };
-const rightIconStyle: ViewStyle = { marginLeft: spacing.base, marginRight: spacing.double };
+const leftComponentStyle: ViewStyle = { marginRight: spacing.base, marginLeft: spacing.double };
+const rightComponentStyle: ViewStyle = { marginLeft: spacing.base, marginRight: spacing.double };
 const RIGHT: ViewStyle = { width: 32 };
 const CONTAINER: ViewStyle = {
   flexDirection: 'row',
@@ -26,7 +26,6 @@ const ROOT: ViewStyle = {
 export function Button(props: ButtonProps) {
   const {
     preset = 'primary',
-    tx,
     disabled = false,
     style: styleOverride,
     containerStyle,
@@ -42,18 +41,21 @@ export function Button(props: ButtonProps) {
     leftIcon,
     rightIcon,
     iconLeftSize,
+    iconLeftColor,
     iconRightSize,
+    iconRightColor,
+
     ...rest
   } = props;
 
   const viewStyle = viewPresets[preset] || viewPresets.primary;
-  const textStyle = textPresets[preset] || textPresets.primary;
+  const textStyle = btnTextPresets[preset] || btnTextPresets.primary;
   const textStyles = [
     textStyle,
     textStyleOverride,
-    disabled ? disableTextStyle || textPresets.disabled : null,
+    disabled ? disableTextStyle || btnTextPresets.disabled : null,
   ];
-  const content = children || <Text tx={tx} text={text} style={textStyles} />;
+  const content = children || <Text text={text} style={textStyles} />;
 
   const viewStyles = [
     CONTAINER,
@@ -70,7 +72,12 @@ export function Button(props: ButtonProps) {
       onPress={onPress}>
       <View style={viewStyles}>
         {leftIcon && !fetching ? (
-          <Icon icon={leftIcon} size={iconLeftSize} containerStyle={leftIconStyle} />
+          <Icon
+            icon={leftIcon}
+            size={iconLeftSize}
+            color={iconLeftColor}
+            containerStyle={leftComponentStyle}
+          />
         ) : (
           <View style={LEFT} />
         )}
@@ -79,7 +86,12 @@ export function Button(props: ButtonProps) {
         )}
         {content}
         {rightIcon ? (
-          <Icon icon={rightIcon} size={iconRightSize} containerStyle={rightIconStyle} />
+          <Icon
+            icon={rightIcon}
+            size={iconRightSize}
+            color={iconRightColor}
+            containerStyle={rightComponentStyle}
+          />
         ) : (
           <View style={RIGHT} />
         )}

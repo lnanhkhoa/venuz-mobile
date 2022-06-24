@@ -4,7 +4,7 @@ export type CardItemT = {
   hasVariant?: boolean;
   image: any;
   isOnline?: boolean;
-  matches?: string;
+  price: string;
   name: string;
 };
 
@@ -42,7 +42,7 @@ export type DataT = {
   id: number;
   name: string;
   isOnline: boolean;
-  match: string;
+  price: string;
   description: string;
   message: string;
   image: any;

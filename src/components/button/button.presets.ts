@@ -6,13 +6,12 @@ const BASE_CONTAINER: ViewStyle = {
   padding: 16,
   justifyContent: 'center',
   alignItems: 'center',
-  width: '100%',
-  borderRadius: 50,
 };
 
 export const viewPresets = {
   primary: {
     ...BASE_CONTAINER,
+    backgroundColor: '#F75B75',
   } as ViewStyle,
 
   disabled: {
@@ -22,7 +21,7 @@ export const viewPresets = {
 };
 
 const BASE_TEXT_STYLE: TextStyle = TextPresets['heading-4'];
-export const textPresets: Record<ButtonPresetNames, TextStyle> = {
+export const btnTextPresets: Record<ButtonPresetNames, TextStyle> = {
   primary: {
     ...BASE_TEXT_STYLE,
     color: color.text,

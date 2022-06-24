@@ -35,13 +35,17 @@ export const presets = {
    * The default text styles.
    */
   default: BASE,
-  large: setTypography('bold', 32, 38),
+  large: setTypography('black', 32, 38),
   h1: setTypography('bold', 28, 32),
-  h2: setTypography('semiBold', 24, 28),
-  h3: setTypography('medium', 20, 24),
+  h2: setTypography('bold', 24, 28),
+  h3bold: setTypography('bold', 20, 24),
+  h3: setTypography('regular', 20, 24),
   h4: setTypography('regular', 18, 22),
+  h4bold: setTypography('bold', 18, 22),
   h5: setTypography('regular', 16, 20),
+  h5bold: setTypography('bold', 16, 20),
   h6: setTypography('regular', 14, 18),
+  h6bold: setTypography('bold', 14, 18),
   medium: setTypography('regular', 13, 18),
   small: setTypography('regular', 12, 18),
 

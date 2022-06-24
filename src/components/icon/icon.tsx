@@ -3,10 +3,6 @@ import { ImageStyle, Image, TouchableOpacity } from 'react-native';
 import { IconProps } from './icon.props';
 import { icons } from './icons';
 
-const ROOT: ImageStyle = {
-  resizeMode: 'contain',
-};
-
 export function Icon(props: IconProps) {
   const { style: styleOverride, icon, containerStyle, size, color, onPress, disable } = props;
   const disableIcon = disable ?? true;
@@ -22,7 +18,11 @@ export function Icon(props: IconProps) {
 
   return (
     <TouchableOpacity style={containerStyle} onPress={onPress} disabled={disableIcon}>
-      <Image style={[ROOT, sizeProps, colorProps, styleOverride]} source={icons[icon]} />
+      <Image
+        style={[sizeProps, colorProps, styleOverride]}
+        source={icons[icon]}
+        resizeMode="contain"
+      />
     </TouchableOpacity>
   );
 }

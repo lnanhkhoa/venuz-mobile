@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginScreen, HomeScreen } from 'screens';
 
 export type AuthNavigatorParamList = {
@@ -7,12 +7,12 @@ export type AuthNavigatorParamList = {
   HomeScreen: undefined;
 };
 
-const Stack = createStackNavigator<AuthNavigatorParamList>();
+const Stack = createNativeStackNavigator<AuthNavigatorParamList>();
 
 export const AuthNavigators = () => {
   return (
     <Stack.Navigator
-      initialRouteName="HomeScreen"
+      initialRouteName="LoginScreen"
       screenOptions={{
         headerShown: false,
       }}>

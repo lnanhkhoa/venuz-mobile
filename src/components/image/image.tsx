@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 import { ImageTypes, images } from './images';
 
-interface ImageProps extends Omit<RNImageProps, 'source'> {
-  name: ImageTypes;
+interface ImageProps extends RNImageProps {
+  name?: ImageTypes;
   containerStyles?: StyleProp<ViewStyle>;
 }
 
-export const Image = ({ name, containerStyles, ...rest }: ImageProps) => (
+export const Image = ({ name, source, containerStyles, ...rest }: ImageProps) => (
   <View style={containerStyles}>
-    <RNImage {...rest} source={images[name]} />
+    <RNImage {...rest} source={images[name] || source} />
   </View>
 );

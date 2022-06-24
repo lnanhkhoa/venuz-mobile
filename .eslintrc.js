@@ -12,8 +12,16 @@ module.exports = {
         'no-undef': 'off',
         curly: 'off',
         'no-use-before-define': 'off',
+        'react/display-name': 'off',
+        'react-native/sort-styles': 'off',
+        'react-native/no-color-literals': 'off',
+        'react-native/no-inline-styles': 'off',
       },
     },
   ],
-  extends: ['plugin:react/recommended', 'airbnb', 'airbnb/hooks', 'prettier', 'prettier/react'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-native/all',
+  ],
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import Icon from './Icon';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { ProfileItemT } from '../types';
 import styles, { DARK_GRAY, WHITE } from '../assets/styles';
 
@@ -17,7 +17,8 @@ const ProfileItem = ({
   <View style={styles.containerProfileItem}>
     <View style={styles.matchesProfileItem}>
       <Text style={styles.matchesTextProfileItem}>
-        <Icon name="heart" size={13} color={WHITE} /> {matches}% Match!
+        <Icon name="heart" size={13} color={WHITE} />
+        <Text>{`${matches}% Match!`}</Text>
       </Text>
     </View>
 

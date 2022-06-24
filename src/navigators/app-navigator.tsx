@@ -4,10 +4,10 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 //
 import { navigationRef } from './navigation-utilities';
 import { useAuth } from 'services';
-import { AuthNavigators, AuthNavigatorParamList } from './auth-navigator';
-import { BottomNavigator, BottomNavigatorParamList } from './bottom-navigator';
+import { AuthNavigators } from './auth-navigator';
+import { MainNavigators } from './main-navigator';
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
+type NavigationProps = Partial<React.ComponentProps<typeof NavigationContainer>>;
 
 export const AppNavigator = (props: NavigationProps) => {
   const colorScheme = useColorScheme();
@@ -18,7 +18,7 @@ export const AppNavigator = (props: NavigationProps) => {
       ref={navigationRef}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
       {...props}>
-      {auth.authData ? <BottomNavigator /> : <AuthNavigators />}
+      {!auth.authData ? <MainNavigators /> : <AuthNavigators />}
     </NavigationContainer>
   );
 };
