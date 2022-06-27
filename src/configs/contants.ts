@@ -12,7 +12,7 @@ export const AppConstants = {
   isAndroid: IS_ANDROID,
   ENABLE_PUSH_NOTIFICATION,
   headerHeight: 60,
-  bottomViewHeight: 90,
+  bottomViewHeight: 60,
   DIMENSION_WIDTH,
   DIMENSION_HEIGHT,
 };

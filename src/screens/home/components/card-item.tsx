@@ -14,18 +14,45 @@ import { color, spacing, us } from 'theme';
 import { AppConstants } from 'configs';
 import { Icon, Text } from 'components';
 import { PaginatedIndicator } from './paginated-indicator';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const CardItem = ({ hasActions, image, isOnline, price, name }: CardItemT) => {
+export const ONLINE_STATUS = '#46A575';
+export const OFFLINE_STATUS = '#D04949';
+
+export const STAR_ACTIONS = '#B69C9C';
+export const LIKE_ACTIONS = '#1D9940';
+export const DISLIKE_ACTIONS = '#C62A2A';
+export const SEND_ACTIONS = '#8A0A85';
+
+function useStyle() {
+  const insets = useSafeAreaInsets();
   const { width: fullWidth, height: fullHeight } = useWindowDimensions();
-  const bottomTabHeight = useBottomTabBarHeight();
   //
   const imageStyle: StyleProp<ImageStyle> = [
     {
       width: fullWidth - 2 * spacing.double,
-      height: fullHeight - bottomTabHeight - AppConstants.headerHeight - 2 * spacing.double,
+      height:
+        fullHeight -
+        insets.top -
+        insets.bottom -
+        AppConstants.headerHeight -
+        AppConstants.bottomViewHeight -
+        2 * spacing.medium,
     },
   ];
+  return { imageStyle };
+}
 
+export const CardItem = ({
+  hasActions,
+  image,
+  isOnline,
+  price,
+  name,
+  swipeLeft,
+  swipeRight,
+}: CardItemT) => {
+  const { imageStyle } = useStyle();
   return (
     <View style={styles.container}>
       <ImageBackground style={imageStyle} source={image}>
@@ -42,7 +69,6 @@ const CardItem = ({ hasActions, image, isOnline, price, name }: CardItemT) => {
               </View>
               <Text preset="h4" color={color.text} text={`$${price}`} />
             </View>
-
             {/* ACTIONS */}
             {hasActions && (
               <View style={styles.actionsCardItem}>
@@ -51,10 +77,12 @@ const CardItem = ({ hasActions, image, isOnline, price, name }: CardItemT) => {
                   <Icon icon="back" color={STAR_ACTIONS} size={24} />
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={[styles.button, { borderColor: DISLIKE_ACTIONS, borderWidth: 2 }]}>
+                  style={[styles.button, { borderColor: DISLIKE_ACTIONS, borderWidth: 2 }]}
+                  onPress={swipeLeft}>
                   <Icon icon="error" color={DISLIKE_ACTIONS} size={25} />
                 </TouchableOpacity>
                 <TouchableOpacity
+                onPress={swipeRight}
                   style={[styles.button, { borderColor: LIKE_ACTIONS, borderWidth: 2 }]}>
                   <Icon icon="like" color={LIKE_ACTIONS} size={25} />
                 </TouchableOpacity>
@@ -71,16 +99,6 @@ const CardItem = ({ hasActions, image, isOnline, price, name }: CardItemT) => {
     </View>
   );
 };
-
-export default CardItem;
-
-export const ONLINE_STATUS = '#46A575';
-export const OFFLINE_STATUS = '#D04949';
-
-export const STAR_ACTIONS = '#B69C9C';
-export const LIKE_ACTIONS = '#1D9940';
-export const DISLIKE_ACTIONS = '#C62A2A';
-export const SEND_ACTIONS = '#8A0A85';
 
 const styles = StyleSheet.create({
   container: {
@@ -114,7 +132,6 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    // backgroundColor: color.white,
     borderRadius: 30,
     elevation: 1,
     height: 60,

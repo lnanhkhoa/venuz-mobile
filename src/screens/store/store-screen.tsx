@@ -7,7 +7,7 @@ import WebView from 'react-native-webview';
 import { NProgress } from 'react-native-nprogress';
 import { useIsFocused } from '@react-navigation/native';
 
-export function SettingScreen() {
+export function StoreScreen() {
   const webViewRef = useRef();
   const [enabled, setEnabled] = useState(false);
 
@@ -29,7 +29,7 @@ export function SettingScreen() {
         javaScriptEnabled
         sharedCookiesEnabled
         scalesPageToFit
-        source={{ uri: 'http://ec2-13-41-80-12.eu-west-2.compute.amazonaws.com/my-account-2/' }}
+        source={{ uri: 'http://ec2-13-41-80-12.eu-west-2.compute.amazonaws.com/' }}
         showsHorizontalScrollIndicator={false}
         renderLoading={() => (
           <ActivityIndicator

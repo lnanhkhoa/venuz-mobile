@@ -43,7 +43,7 @@ export function Header(props: HeaderProps) {
     marginLeft: spacing.double,
   };
   return (
-    <View style={[ROOT, !unsafe && { paddingTop: insets.top }, style]}>
+    <View style={[ROOT, !unsafe && { marginTop: insets.top }, style]}>
       {leftIcon ? (
         <Icon
           icon={leftIcon}

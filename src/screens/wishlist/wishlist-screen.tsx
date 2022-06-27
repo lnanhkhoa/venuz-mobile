@@ -1,4 +1,4 @@
-import { View, ViewStyle, ImageStyle, FlatList } from 'react-native';
+import { View, ViewStyle, ImageStyle, FlatList, useWindowDimensions } from 'react-native';
 import React, { useCallback } from 'react';
 
 import { Button, Header, Image, Screen, Text, textPresets } from 'components';
@@ -11,64 +11,57 @@ import { color, spacing, us } from 'theme';
 import { ReviewStar } from './components';
 import { AppConstants } from 'configs';
 
+function useStyle() {
+  const { width, height } = useWindowDimensions();
+
+  const imageStyle: ImageStyle = {
+    width: (width - 4 * spacing.medium) / 2,
+    height: 240,
+    borderRadius: 4,
+  };
+  return { imageStyle };
+}
+
 export function WishlistScreen() {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
-
-  const imageStyle: ImageStyle = {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
-  };
+  const { imageStyle } = useStyle();
 
   const renderItem = useCallback(({ item }) => {
     return (
-      <View style={us.pDouble}>
-        <View style={us.row}>
+      <View style={[us.pMedium, us.flex1]}>
+        <View style={{}}>
           <Image source={item.image} style={imageStyle} />
-          <View style={[us.flex1, us.justifyCenter, us.mlMedium]}>
-            <Text preset={'h5'} text={item.name} />
-            <ReviewStar containerStyle={REVIEW} point={2} amount={102} />
-            <Text preset={'h5bold'} text={`Size: L`} color={'#F75B75'} />
-            <Text preset={'h6'} text={item.description} color={'#403A3B'} />
+          <View style={[us.flex1, us.justifyCenter]}>
+            <Text preset={'h5'} text={item.name} style={us.mtBase} />
+            <View style={[us.rowAlign, us.justifyBetween, us.flexWrap]}>
+              <Text preset={'h5'} text={`Color: `} style={us.mtBase} />
+              <Text preset={'h5'} text={`Size: L`} />
+            </View>
           </View>
         </View>
-        <Text preset={'h5'} text={'$4563'} color={'#F75B75'} style={{ alignSelf: 'flex-end' }} />
+        <Text preset={'h5'} text={'$4563'} color={'#F75B75'} />
+        <Button
+          text="Add to bag"
+          textStyle={{ color: color.white }}
+          style={{ borderRadius: 4, marginTop: 10 }}
+          containerStyle={{ alignSelf: 'center' }}
+        />
       </View>
     );
   }, []);
 
   return (
-    <Screen unsafe style={CONTAINER}>
+    <Screen style={CONTAINER}>
       <Header unsafe headerText="Wishlist" titleStyle={textPresets.h3bold} />
-      <FlatList data={DEMO} renderItem={renderItem} />
-      <Shadow>
-        <View style={[BOTTOM, { paddingBottom: insets.bottom }]}>
-          <Text preset="h5" text={'$677'} />
-          <Button
-            text="ADD ALL TO CART"
-            textStyle={{ color: color.white, ...textPresets.h4bold }}
-            rightIcon="arrow-right"
-            iconRightSize={22}
-            iconRightColor={color.white}
-            style={{ paddingVertical: 16, paddingHorizontal: 10 }}
-          />
-        </View>
-      </Shadow>
+      <FlatList
+        data={DEMO}
+        renderItem={renderItem}
+        numColumns={2}
+        contentContainerStyle={{ paddingBottom: spacing.double }}
+      />
     </Screen>
   );
 }
 
 const CONTAINER: ViewStyle = {};
-const REVIEW: ViewStyle = {
-  paddingVertical: spacing.tiny,
-};
-const BOTTOM: ViewStyle = {
-  width: '100%',
-  backgroundColor: color.white,
-  flexDirection: 'row',
-  alignItems: 'center',
-  padding: spacing.double,
-  minHeight: AppConstants.bottomViewHeight,
-  justifyContent: 'space-between',
-};

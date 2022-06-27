@@ -3,7 +3,7 @@ import { color } from 'theme';
 import { presets as TextPresets } from '../text/text.presets';
 
 const BASE_CONTAINER: ViewStyle = {
-  padding: 16,
+  padding: 12,
   justifyContent: 'center',
   alignItems: 'center',
 };

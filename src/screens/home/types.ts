@@ -6,6 +6,8 @@ export type CardItemT = {
   isOnline?: boolean;
   price: string;
   name: string;
+  swipeRight: () => void;
+  swipeLeft: () => void;
 };
 
 export type IconT = {

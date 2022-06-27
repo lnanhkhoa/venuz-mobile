@@ -16,6 +16,7 @@ module.exports = {
         'react-native/sort-styles': 'off',
         'react-native/no-color-literals': 'off',
         'react-native/no-inline-styles': 'off',
+        "operator-linebreak": "before"
       },
     },
   ],

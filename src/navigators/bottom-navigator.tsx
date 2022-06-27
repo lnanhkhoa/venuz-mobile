@@ -2,11 +2,13 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from 'components';
 //
-import { HomeScreen, SettingScreen } from 'screens';
+import { HomeScreen, SettingScreen, WishlistScreen, StoreScreen } from 'screens';
 import { BottomTabBar } from './components/bottom-tabbar';
 
 export type BottomNavigatorParamList = {
   HomeScreen: undefined;
+  StoreScreen: undefined;
+  WishlistScreen: undefined;
   SettingScreen: undefined;
 };
 
@@ -17,8 +19,10 @@ export const BottomNavigator = () => {
     <BottomTab.Navigator
       initialRouteName="HomeScreen"
       tabBar={props => <BottomTabBar {...props} />}
+      detachInactiveScreens
       screenOptions={{
         headerShown: false,
+        lazy: true,
       }}>
       <BottomTab.Screen
         name="HomeScreen"
@@ -27,11 +31,12 @@ export const BottomNavigator = () => {
           tabBarIcon: () => <Icon icon="home" size={25} />,
         }}
       />
-      {/* <BottomTab.Screen
+      <BottomTab.Screen
         name="StoreScreen"
-        component={HomeScreen}
+        component={StoreScreen}
         options={{
           tabBarIcon: () => <Icon icon="more-app" size={25} />,
+          lazy: false,
         }}
       />
       <BottomTab.Screen
@@ -40,7 +45,7 @@ export const BottomNavigator = () => {
         options={{
           tabBarIcon: () => <Icon icon="like" size={25} />,
         }}
-      /> */}
+      />
       <BottomTab.Screen
         name="SettingScreen"
         component={SettingScreen}

@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 export function Screen({ children, style, unsafe = false, keyboardVerticalOffset }: ScreenProps) {
   const insets = useSafeAreaInsets();
   return (
-    <View style={[CONTAINER, !unsafe && { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
+    <View style={[CONTAINER, !unsafe && { paddingTop: insets.top }]}>
       <KeyboardAvoidingView
         onTouchStart={Keyboard.dismiss}
         behavior={Platform.OS === 'ios' ? undefined : 'padding'}

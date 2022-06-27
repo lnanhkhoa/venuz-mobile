@@ -1,14 +1,8 @@
-import { StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native';
+import { useWindowDimensions, View, ViewStyle } from 'react-native';
 import React from 'react';
 import { color, spacing, us } from 'theme';
 
-interface PaginatedIndicatorProps {
-  current: number;
-  total: number;
-}
-
-export function PaginatedIndicator({ current = 0, total }: PaginatedIndicatorProps) {
-  const listItems = new Array(total).fill(1);
+function useStyle({ total }) {
   const { width: fullWidth } = useWindowDimensions();
   const itemWidth = (fullWidth - 4 * spacing.double - spacing.tiny * (total - 1)) / total;
   const itemStyle: ViewStyle = {
@@ -18,6 +12,15 @@ export function PaginatedIndicator({ current = 0, total }: PaginatedIndicatorPro
     marginRight: spacing.tiny,
     borderRadius: 99,
   };
+  return { itemStyle };
+}
+interface PaginatedIndicatorProps {
+  current: number;
+  total: number;
+}
+export function PaginatedIndicator({ current = 0, total }: PaginatedIndicatorProps) {
+  const listItems = new Array(total).fill(1);
+  const { itemStyle } = useStyle({ total });
 
   return (
     <View style={[us.rowAlign, us.ptMedium, us.justifyCenter]}>
@@ -30,5 +33,3 @@ export function PaginatedIndicator({ current = 0, total }: PaginatedIndicatorPro
     </View>
   );
 }
-
-const styles = StyleSheet.create({});
